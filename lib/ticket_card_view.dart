@@ -8,7 +8,7 @@ class TicketCardView extends StatelessWidget {
   final Map<String, dynamic> tickets;
 
   const TicketCardView({super.key, required this.tickets});
-  
+
   @override
   Widget build(BuildContext context) {
     final size = AppLayout.getSize(context);
@@ -17,7 +17,7 @@ class TicketCardView extends StatelessWidget {
         width: size.width * 0.85,
         height: AppLayout.getHeight(200),
         child: Container(
-          margin:  EdgeInsets.only(right: AppLayout.getHeight(16)),
+          margin: EdgeInsets.only(right: AppLayout.getHeight(16)),
           child: Column(
             children: [
               // 目的地
@@ -30,10 +30,16 @@ class TicketCardView extends StatelessWidget {
                 padding: const EdgeInsets.all(16),
                 child: Column(
                   children: [
-                   TicketDestinationCodeView(fromCode: tickets['from']['code'], toCode: tickets['to']['code']),
+                    TicketDestinationCodeView(
+                        fromCode: tickets['from']['code'],
+                        toCode: tickets['to']['code']),
                     // 目的地2
                     const Gap(3),
-                    TicketDestinationNameView(fromName: tickets['from']['name'], toName:  tickets['to']['name'],duration: tickets['duration'],),
+                    TicketDestinationNameView(
+                      fromName: tickets['from']['name'],
+                      toName: tickets['to']['name'],
+                      duration: tickets['duration'],
+                    ),
                   ],
                 ),
               ),
@@ -95,7 +101,14 @@ class TicketCardView extends StatelessWidget {
                     borderRadius: const BorderRadius.only(
                         bottomLeft: Radius.circular(21),
                         bottomRight: Radius.circular(21))),
-                child: TicketDateView(leftValue: tickets['date'], rightValue: tickets['number'], leftKey: "Date", rightKey:  "Number",middleValue: tickets['departure_time'],middleKey: "Departure time",),
+                child: TicketDateView(
+                  leftValue: tickets['date'],
+                  rightValue: tickets['number'],
+                  leftKey: "Date",
+                  rightKey: "Number",
+                  middleValue: tickets['departure_time'],
+                  middleKey: "Departure time",
+                ),
               ),
             ],
           ),

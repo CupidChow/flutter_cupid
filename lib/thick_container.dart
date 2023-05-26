@@ -47,19 +47,34 @@ class GapLineView extends StatelessWidget {
 }
 
 class ThickCircleDotView extends StatelessWidget {
-  const ThickCircleDotView({super.key});
-
+  final Color? dotColor;
+  const ThickCircleDotView({super.key, this.dotColor});
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 30,
-      height: 30,
-      padding: EdgeInsets.all(AppLayout.getWidth(10)),
-      decoration: BoxDecoration(
-          border: Border.all(color: Colors.red, width: 3),
-          color: Colors.transparent,
-          borderRadius:
-              BorderRadius.all(Radius.circular(AppLayout.getWidth(6)))),
+    return Stack(
+      children: [
+        Container(
+          width: 18,
+          height: 18,
+          decoration: BoxDecoration(
+              border: Border.all(color: dotColor ?? Colors.black, width: 2),
+              color: Colors.transparent,
+              borderRadius:
+                  BorderRadius.all(Radius.circular(AppLayout.getWidth(50)))),
+        ),
+        Positioned(
+            left: 4,
+            top: 4,
+            child: Container(
+              alignment: Alignment.center,
+              width: 10,
+              height: 10,
+              decoration: BoxDecoration(
+                  color: dotColor ?? Colors.black,
+                  borderRadius: BorderRadius.all(
+                      Radius.circular(AppLayout.getWidth(50)))),
+            ))
+      ],
     );
   }
 }
