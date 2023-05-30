@@ -1,13 +1,17 @@
 import 'package:fluentui_icons/fluentui_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_day1/home/home_page.dart';
-import 'package:flutter_day1/profile_page.dart';
+
 import 'package:flutter_day1/util/appstyle.dart';
-import 'package:flutter_day1/ticket_page.dart';
 
-import 'widget/search_view.dart';
+import 'delivery/page/delivery_cart_page.dart';
+import 'delivery/page/delivery_catrgory_page.dart';
+import 'delivery/page/delivery_home_page.dart';
+import 'delivery/page/delivery_me_page.dart';
+import 'delivery/helper/dependencies.dart' as repo;
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  repo.initClient();
   runApp(const MyApp());
 }
 
@@ -34,12 +38,12 @@ class RootPage extends StatefulWidget {
 }
 
 class _RootPageState extends State<RootPage> {
-  int _currentPage = 2;
+  int _currentPage = 0;
   List<Widget> pages = const [
-    HomePage(),
-    SearchPage(),
-    TicketPage(),
-    ProfilePage()
+    DeliveryHomePage(),
+    DeliveryCategoryPage(),
+    DeliveryCartPage(),
+    DeliveryMePage()
   ];
   void _onItemSelect(int selectIndex) {
     setState(() {
@@ -50,7 +54,6 @@ class _RootPageState extends State<RootPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
       body: pages[_currentPage],
       floatingActionButton: FloatingActionButton(
         onPressed: () {
